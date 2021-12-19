@@ -12,9 +12,16 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'response' => [
+            'format' => yii\web\Response::FORMAT_JSON,
+            'charset' => 'UTF-8',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'b1Tk9dvfIvfcm7sftIvC6mErjTnyjUmT',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -43,14 +50,14 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
+            // 'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['artist', 'country', 'genre', 'label']],
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
